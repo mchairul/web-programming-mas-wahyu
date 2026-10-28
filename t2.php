@@ -32,7 +32,8 @@ $courseCatalog = [
                     "module_title" => "High-Performance API Pipelines",
                     "lessons" => [
                         ["id" => "L-201", "title" => "Zero-Allocation Middleware", "duration_min" => 50],
-                        ["id" => "L-202", "title" => "gRPC Integration", "duration_min" => 40]
+                        ["id" => "L-202", "title" => "gRPC Integration", "duration_min" => 40],
+                        ["id" => "L-203", "title" => "gRPC Integration", "duration_min" => 40]
                     ]
                 ]
             ],
