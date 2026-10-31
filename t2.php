@@ -73,7 +73,9 @@ $courseCatalog = [
             ]
         ]
     ]
-]; ?>
+];
+echo $courseCatalog['courses']['COURSE-001']['curriculum'][0]['lessons'][0]['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -146,7 +148,7 @@ $courseCatalog = [
                         
 
                     <?php
-                    $nReview = 0;
+                    //$nReview = 0;
                     $indexC = 0;
                     foreach ($course['curriculum'] as $module) { ?>
 
@@ -159,11 +161,14 @@ $courseCatalog = [
                         <td ><?php echo $module['lessons'][$i]['title'] ?></td>
                         <td ><?php echo $module['lessons'][$i]['duration_min'] ?></td>
 
-                        <?php if ($nReview == 0) { ?>
+                        <?php if ($i == 0) { ?>
                         <td rowspan="<?php echo count($module['lessons']) ?>"><?php echo $course['reviews'][$indexC]['user'] ?></td>
                         <td rowspan="<?php echo count($module['lessons']) ?>"><?php echo $course['reviews'][$indexC]['rating'] ?></td>
                         <td rowspan="<?php echo count($module['lessons']) ?>"><?php echo $course['reviews'][$indexC]['comment'] ?></td>
-                        <?php $nReview++; $indexC++;} ?>
+                        <?php
+                        //$nReview++;
+                        $indexC++;
+                        } ?>
             </tr>
                         <?php  } ?>
             
