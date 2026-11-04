@@ -1,6 +1,6 @@
 <?php
 //                          host        user    pass    db_name
-$koneksi = mysqli_connect('localhost', 'root', 'root', 'sekolah');
+$koneksi = mysqli_connect('localhost', 'root', 'root', 'sekolah_123');
 //var_dump($koneksi);
 
 // cek error
