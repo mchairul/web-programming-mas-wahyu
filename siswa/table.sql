@@ -45,3 +45,11 @@ CREATE TABLE jadwal (
     CONSTRAINT jadwal_siswa FOREIGN KEY (id_siswa) REFERENCES table_siswa(id),
     CONSTRAINT jadwal_mapel FOREIGN KEY (id_mata_pelajaran) REFERENCES  mata_pelajaran(id)
 )
+
+CREATE TABLE modul_mata_pelajaran (
+    id INT(32) unsigned PRIMARY KEY AUTO_INCREMENT,
+    id_mata_pelajaran INT(32) unsigned,
+    nama_file VARCHAR(255) NOT NULL,
+    keterangan VARCHAR(255),
+    CONSTRAINT modul_mapel FOREIGN KEY (id_mata_pelajaran) REFERENCES mata_pelajaran(id)
+);

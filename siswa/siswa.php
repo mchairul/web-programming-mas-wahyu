@@ -17,6 +17,7 @@ $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
                 <th>NISN</th>
                 <th>Nama</th>
                 <th>Alamat</th>
+                <th>Tanggal Lahir</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@ $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
                 <td><?= $siswa['nisn'] ?></td>
                 <td><?= $siswa['nama_siswa'] ?></td>
                 <td><?= $siswa['alamat'] ?></td>
+                <td><?= $siswa['tanggal_lahir'] ?></td>
                 <td>
                     <a class="btn btn-warning" href="ubah_siswa.php?id=<?= $siswa['id'] ?>">Ubah</a>
                     <button type="button" class="btn btn-danger" onclick="hapusSiswa('<?= $siswa['id'] ?>')">Hapus</button>

@@ -21,6 +21,11 @@ include 'system/koneksi.php';
         </div>
 
         <div class="mb-3">
+            <label for="id_tanggal_lahir">Tanggal Lahir</label>
+            <input type="date" name="tanggal_lahir" id="id_tanggal_lahir" class="form-control" placeholder="Input Tgl Lahir" required>
+        </div>
+
+        <div class="mb-3">
             <a href="siswa.php" class="btn btn-secondary">Batal</a>
             <button type="submit" class="btn btn-success">Tambah</button>
         </div>

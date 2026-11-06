@@ -21,6 +21,12 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="mata_pelajaran.php">Mata Pelajaran</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="jadwal.php">Jadwal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="modul.php">Modul Belajar</a>
+                </li>
             </ul>
             </div>
         </div>
