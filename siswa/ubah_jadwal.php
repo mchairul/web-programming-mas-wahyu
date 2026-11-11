@@ -1,6 +1,11 @@
 <?php
 include 'partial/header.php';
 include 'system/koneksi.php';
+//cek session
+if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
+    header('Location: index.php');
+    exit;
+}
 
 $id = $_GET['id'];
 $dataJadwal = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE id = $id");

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -26,6 +26,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="modul.php">Modul Belajar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="foto.php">Foto Siswa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="logout.php">Logout</a>
                 </li>
             </ul>
             </div>

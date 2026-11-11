@@ -1,6 +1,11 @@
 <?php
 
 include 'system/koneksi.php';
+//cek session
+if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
+    header('Location: index.php');
+    exit;
+}
 
 $idSiswa = $_POST['post_id_siswa'];
 $idMapel = $_POST['post_id_mapel'];

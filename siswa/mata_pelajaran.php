@@ -1,6 +1,11 @@
 <?php
 include 'partial/header.php';
 include 'system/koneksi.php';
+//cek session
+if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
+    header('Location: index.php');
+    exit;
+}
 
 $mataPelajaran = mysqli_query($koneksi,"SELECT * FROM mata_pelajaran");
 ?>
