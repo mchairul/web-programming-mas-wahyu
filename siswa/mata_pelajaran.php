@@ -36,7 +36,7 @@ $mataPelajaran = mysqli_query($koneksi,"SELECT * FROM mata_pelajaran");
                     <button type="button" class = "btn btn-danger" onclick="hapusMapel('<?= $row['id'] ?>')">Hapus</a>
                 </td>
             </tr>
-            <?php $i++; } ?>       
+            <?php $i++; } ?>
         </tbody>
     </table>
 </div>

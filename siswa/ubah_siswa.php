@@ -8,7 +8,7 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
 }
 $id = $_GET['id'];
 
-$dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa WHERE id = $id");
+$dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa WHERE id = '$id'");
 
 // fetch ke array
 $siswa = mysqli_fetch_assoc($dataSiswa);

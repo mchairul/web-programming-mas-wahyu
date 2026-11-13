@@ -9,3 +9,5 @@ $koneksi = mysqli_connect('localhost', 'root', 'root', 'sekolah_mas_wahyu');
 if ($koneksi->connect_error) {
     die('koneksi gagal' . $koneksi->connect_error);
 }
+
+include 'validation.php';
