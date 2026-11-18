@@ -6,10 +6,8 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
     exit;
 }
-
-$id = $_GET['id'];
-
-$mataPelajaran = mysqli_query($koneksi,"SELECT * FROM mata_pelajaran WHERE id = $id");
+$id=$_GET['id'];
+$mataPelajaran = mysqli_query($koneksi,"SELECT * FROM mata_pelajaran WHERE id= '$id' ");
 
 $row = mysqli_fetch_assoc($mataPelajaran);
 ?>
@@ -24,18 +22,28 @@ $row = mysqli_fetch_assoc($mataPelajaran);
                 <input type="text" 
                     name="kode_mata_pelajaran" 
                     id="id_kode_mapel" 
-                    class="form-control"
+                    class="form-control <?php if(cekFlashSession('kode_mata_pelajaran')) { echo 'is-invalid'; }?>"
                     value="<?= $row['kode_mata_pelajaran']?>" 
                     placeholder="Input Kode Mata Pelajaran" required>
+             <div class="invalid-feedback">
+                <?php if (cekFlashSession('kode_mata_pelajaran')) {?>
+                <?= ambilFlashSession('kode_mata_pelajaran') ?>
+                <?php } ?>
+            </div>   
             </div>
             <div class="mb-3">
                 <label for="id_nama_mapel">Nama Mata Pelajaran</label>
                 <input type="text"
                     name="nama_mata_pelajaran"
                     id="id_nama_mapel"
-                    class="form-control"
+                    class="form-control <?php if(cekMapelSession('nama_mata_pelajaran')) {echo 'is-invalid';} ?>"
                     value="<?=  $row['nama_mata_pelajaran'] ?>"
                     placeholder="Input Nama Mata Pelajaran" required>
+             <div class="invalid-feedback">
+                <?php if (cekMapelSession('nama_mata_pelajaran')) {?>
+                <?= ambilMapelSession('nama_mata_pelajaran') ?>
+                <?php } ?>
+            </div>
             </div>
             <div class="mb-3">
                 <a href="mata_pelajaran.php" class="btn btn-secondary">Batal</a>
@@ -43,4 +51,21 @@ $row = mysqli_fetch_assoc($mataPelajaran);
             </div>
     </form>
 </div>
+<script>
+        // hapus class is-invalid ketika user mengetik di input username
+
+        // variable element input dengan id username
+        var elementInputUsername = document.getElementById('id_kode_mapel');
+        // event listener untuk elemet elementInputUsername
+        elementInputUsername.addEventListener('input', function () {
+            // hapus class di element
+            elementInputUsername.classList.remove('is-invalid');
+        });
+
+        // hapus class is-invalid ketika user mengetik di input password
+        var elementInputPassword = document.getElementById('id_nama_mapel');
+        elementInputPassword.addEventListener('input', function () {
+            elementInputPassword.classList.remove('is-invalid');
+        });
+    </script>
 <?php include 'partial/footer.php'?>

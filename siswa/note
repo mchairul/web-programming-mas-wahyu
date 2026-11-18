@@ -1,0 +1,10 @@
+variable siawali dengan $_ adalah super global variable yang bertipe data array
+contoh
+    $_GET
+        diset manual dan bisa di dapat daro URL
+    $_POST
+        diset manual dan bisa didapat dari form post
+    $_SESSION
+        diset manual dan bisa dibuat sesuai keinginan dan bisa dihapus jg
+    $_SERVER
+        auto , dari parameter server

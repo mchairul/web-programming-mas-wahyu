@@ -37,3 +37,20 @@
             </div>
         </div>
     </nav>
+    <?php if (cekFlashSession('pesan_sukses')) { ?>
+    <div class="container mt-3">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <div><?= ambilFlashSession('pesan_sukses') ?></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php if (cekFlashSession('pesan_gagal')) { ?>
+    <div class="container mt-3">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div><?= ambilFlashSession('pesan_gagal') ?></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <?php } ?>

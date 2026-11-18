@@ -23,7 +23,7 @@ include 'system/koneksi.php';
             <div class="col-md-6 login-form mt-5 p-5">
                 <h1>Login</h1>
                 <form action="proses_login.php" method="post">
-
+                    <input type="hidden" name="_token" value="<?= getCsrfToken() ?>">
                     <div class="mb-3">
                         <label for="username">Username</label>
                         <!-- jika cek flash ada tambah class is-invalid setelah form-control -->

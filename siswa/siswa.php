@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
@@ -12,7 +12,6 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
 $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
 
 ?>
-
 <div class="container">
     <h1>Siswa</h1>
     <a href="tambah_siswa.php" class="btn btn-primary">+ Tambah Siswa</a>

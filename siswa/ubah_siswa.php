@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -9,6 +9,13 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
 $id = $_GET['id'];
 
 $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa WHERE id = '$id'");
+
+// cek apakah siswa dengan id dari $_GET benar ada
+// jika hasil baris kurang dari 1 . atau di table_siswa tidak ada
+if (mysqli_num_rows($dataSiswa) < 1) {
+    header('Location: siswa.php');
+    exit();
+}
 
 // fetch ke array
 $siswa = mysqli_fetch_assoc($dataSiswa);
@@ -20,20 +27,39 @@ $siswa = mysqli_fetch_assoc($dataSiswa);
         <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
         <div class="mb-3">
             <label for="id_nisn">NISN</label>
-            <input type="text" name="nisn" id="nisn" class="form-control" value="<?= $siswa['nisn'] ?>" placeholder="Input NISN" required>
+            <input type="text" name="nisn" id="nisn"
+                class="form-control <?php if (cekFlashSession('nisn')) { echo 'is-invalid'; } ?>"
+                value="<?= $siswa['nisn'] ?>" placeholder="Input NISN" required>
+            <div class="invalid-feedback">
+                <?php if (cekFlashSession('nisn')) { ?>
+                <?= ambilFlashSession('nisn') ?>
+                <?php } ?>
+            </div>
         </div>
         <div class="mb-3">
             <label for="id_nama">Nama</label>
-            <input type="text" name="nama" id="id_nama" class="form-control" value="<?= $siswa['nama_siswa'] ?>" placeholder="Input Nama" required>
+            <input type="text" name="nama" id="id_nama"
+                class="form-control <?php if (cekFlashSession('nama')) { echo 'is-invalid'; } ?>"
+                value="<?= $siswa['nama_siswa'] ?>" placeholder="Input Nama" required>
+            <div class="invalid-feedback">
+                <?php if (cekFlashSession('nama')) { ?>
+                <?= ambilFlashSession('nama') ?>
+                <?php } ?>
+            </div>
         </div>
         <div class="mb-3">
             <label for="id_alamat">Alamat</label>
             <textarea
                 name="alamat"
                 id="id_alamat"
-                class="form-control"
+                class="form-control <?php if (cekFlashSession('alamat')) { echo 'is-invalid'; } ?>"
                 placeholder="input alamat"
                 required><?= $siswa['alamat'] ?></textarea>
+            <div class="invalid-feedback">
+                <?php if (cekFlashSession('alamat')) { ?>
+                <?= ambilFlashSession('alamat') ?>
+                <?php } ?>
+            </div>
         </div>
         <div class="mb-3">
             <a href="siswa.php" class="btn btn-secondary">Batal</a>

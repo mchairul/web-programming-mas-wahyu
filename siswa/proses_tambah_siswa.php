@@ -68,5 +68,13 @@ $query = "INSERT INTO table_siswa (nisn, nama_siswa, alamat, tanggal_lahir) VALU
 // proses query insert data siswa 
 $tambahSiswa = mysqli_query($koneksi, $query);
 
+// cek apakah tambah siswa berhasil
+// jika berhasil
+if ($tambahSiswa) {
+    buatFlashSession('pesan_sukses', 'Tambah Siswa Berhasil');
+} else {
+    buatFlashSession('pesan_gagal', 'Tambah siswa gagal : ' . $koneksi->error);
+}
+
 // pindah ke halaman siswa.php
 header('Location: siswa.php');
