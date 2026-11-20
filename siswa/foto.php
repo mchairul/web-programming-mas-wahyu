@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
@@ -37,12 +37,12 @@ $dataFoto = mysqli_query($koneksi, $query);
         <tbody>
             <?php while($foto = mysqli_fetch_assoc($dataFoto)) { ?>
             <tr>
-                <td><?= $foto['nisn'] ?></td>
-                <td><?= $foto['nama_siswa'] ?></td>
+                <td><?= xssClean($foto['nisn']) ?></td>
+                <td><?= xssClean($foto['nama_siswa']) ?></td>
                 <td>
                     <img src="uploads/<?= $foto['file_foto'] ?>" alt="foto siswa" width="150">
                 </td>
-                <td><?= $foto['keterangan'] ?></td>
+                <td><?= xssClean($foto['keterangan']) ?></td>
                 <td>
                     <a href="ubah_foto.php?id=<?= $foto['id'] ?>" class="btn btn-warning">Ubah</a>
                     <button class="btn btn-danger" onclick="hapusFoto('<?= $foto['id'] ?>')">Hapus</button>

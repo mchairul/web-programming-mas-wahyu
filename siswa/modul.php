@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -31,12 +31,12 @@ $dataModul = mysqli_query($koneksi, $query);
             <tbody>
                 <?php while ($modul = mysqli_fetch_assoc($dataModul)) { ?>
                 <tr>                    
-                    <td><?= $modul['kode_mata_pelajaran'] ?></td>
-                    <td><?= $modul['nama_mata_pelajaran'] ?></td>
+                    <td><?= xssClean($modul['kode_mata_pelajaran']) ?></td>
+                    <td><?= xssClean($modul['nama_mata_pelajaran']) ?></td>
                     <td>
                         <a href="uploads/<?= $modul['nama_file'] ?>" target="_blank"><?= $modul['nama_file'] ?></a>
                     </td>
-                    <td><?= $modul['keterangan'] ?></td>
+                    <td><?= xssClean($modul['keterangan']) ?></td>
                     <td>                        
                     <button class="btn btn-danger" onclick="hapusModul('<?= $modul['id'] ?>')">Hapus</button>
                     </td>

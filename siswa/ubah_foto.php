@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -19,6 +19,7 @@ $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
 <div class="container">
     <h1>Ubah Informasi Foto</h1>
     <form action="proses_ubah_foto.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <input type="hidden" name="id" value="<?= $foto['id'] ?>">
         <div class="mb-3">
             <label for="id_siswa_id">Siswa</label>

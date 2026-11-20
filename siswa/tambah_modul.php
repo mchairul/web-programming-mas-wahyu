@@ -1,6 +1,6 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -15,6 +15,7 @@ $dataMapel = mysqli_query($koneksi, "SELECT * FROM mata_pelajaran");
     <h1>Tambah Modul</h1>
     <!-- Untuk upload file tambahkan  enctype="multipart/form-data"  -->
     <form action="proses_tambah_modul.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <div class="mb-3">
             <label for="id_mapel">Mata Pelajaran</label>
             <select name="post_id_mapel" id="id_mapel" class="form-select" required>

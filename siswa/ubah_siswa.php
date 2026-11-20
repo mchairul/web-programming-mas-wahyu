@@ -24,6 +24,7 @@ $siswa = mysqli_fetch_assoc($dataSiswa);
 <div class="container">
     <h1>Ubah Siswa</h1>
     <form action="proses_ubah_siswa.php" method="post">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
         <div class="mb-3">
             <label for="id_nisn">NISN</label>

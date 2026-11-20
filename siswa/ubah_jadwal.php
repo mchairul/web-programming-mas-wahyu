@@ -1,6 +1,7 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
+
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -22,6 +23,7 @@ $dataMapel = mysqli_query($koneksi, "SELECT * FROM mata_pelajaran");
 <div class="container">
     <h1>Ubah Jadwal</h1>
     <form action="proses_ubah_jadwal.php" method="post">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <input type="hidden" name="id" value="<?= $jadwal['id'] ?>">
         <div class="mb-3">
             <label for="id_siswa_id">Siswa</label>

@@ -13,6 +13,7 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     <h1>Tambah Mata Pelajaran</h1>
 
     <form action="proses_tambah_mata_pelajaran.php" method="post">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <div class="mb-3">
             <label for="id_kode_mapel">Kode Mata Pelajaran</label>
             <input type="text" 

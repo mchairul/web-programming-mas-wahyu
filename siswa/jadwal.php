@@ -1,6 +1,7 @@
 <?php
-include 'partial/header.php';
 include 'system/koneksi.php';
+include 'partial/header.php';
+
 //cek session
 if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     header('Location: index.php');
@@ -33,11 +34,11 @@ $dataJadwal = mysqli_query($koneksi, $query);
         <tbody>
             <?php while($jadwal = mysqli_fetch_assoc($dataJadwal)) { ?>
             <tr>
-                <td><?= $jadwal['nisn'] ?></td>
-                <td><?= $jadwal['nama_siswa'] ?></td>
-                <td><?= $jadwal['kode_mata_pelajaran'] ?></td>
-                <td><?= $jadwal['nama_mata_pelajaran'] ?></td>
-                <td><?= $jadwal['jadwal'] ?></td>
+                <td><?= xssClean($jadwal['nisn']) ?></td>
+                <td><?= xssClean($jadwal['nama_siswa']) ?></td>
+                <td><?= xssClean($jadwal['kode_mata_pelajaran']) ?></td>
+                <td><?= xssClean($jadwal['nama_mata_pelajaran']) ?></td>
+                <td><?= xssClean($jadwal['jadwal']) ?></td>
                 <td>
                     <a href="ubah_jadwal.php?id=<?= $jadwal['id'] ?>" class="btn btn-warning">Ubah</a>
                     <button class="btn btn-danger" onclick="hapusJadwal('<?= $jadwal['id'] ?>')">Hapus</button>

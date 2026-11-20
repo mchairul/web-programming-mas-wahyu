@@ -29,8 +29,8 @@ $mataPelajaran = mysqli_query($koneksi,"SELECT * FROM mata_pelajaran");
             while ($row = mysqli_fetch_assoc($mataPelajaran)) { ?>
             <tr>
                 <td><?= $i ?></td>
-                <td><?= $row['kode_mata_pelajaran'] ?></td>
-                <td><?= $row['nama_mata_pelajaran'] ?></td>
+                <td><?= xssClean($row['kode_mata_pelajaran']) ?></td>
+                <td><?= xssClean($row['nama_mata_pelajaran']) ?></td>
                 <td>
                     <a class = "btn btn-warning" href="ubah_mata_pelajaran.php?id=<?= $row['id'] ?>">Ubah</a>
                     <button type="button" class = "btn btn-danger" onclick="hapusMapel('<?= $row['id'] ?>')">Hapus</a>

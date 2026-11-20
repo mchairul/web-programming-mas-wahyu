@@ -12,6 +12,7 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     <h1>Tambah Siswa</h1>
 
     <form action="proses_tambah_siswa.php" method="post">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <div class="mb-3">
             <label for="id_nisn">NISN</label>
             <input type="text" name="nisn" id="id_nisn"

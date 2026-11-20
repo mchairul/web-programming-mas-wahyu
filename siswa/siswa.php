@@ -8,8 +8,34 @@ if (! isset($_SESSION['id']) || ! isset($_SESSION['username'])) {
     exit;
 }
 
+$perHalaman = 3;
+// cek halaman
+if (isset($_GET['halaman'])) {
+    //          cast ke int
+    $halaman = (int) $_GET['halaman']; 
+} else {
+    $halaman = 1;
+}
+
+$previous = $halaman - 1;
+$next = $halaman + 1;
+
+// cek offset
+if ($halaman > 1) {
+    $offset = ($halaman * $perHalaman) - $perHalaman;
+} else {
+    $offset = 0;
+}
+
+// mendapatkan jumlah data
+$getTotalData = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM table_siswa");
+$rowTotalData = mysqli_fetch_assoc($getTotalData);
+$totalData = $rowTotalData['jumlah'];
+
+$totalHalaman = ceil($totalData / $perHalaman); // total hasil pembulatan ke atas
+
 // SELECT data siswa ditaruh ke dalam variable
-$dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
+$dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa LIMIT $perHalaman OFFSET $offset");
 
 ?>
 <div class="container">
@@ -28,14 +54,15 @@ $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
         </thead>
         <tbody>
             <?php
-            $n = 1;
+            // set $n dari nilai offset lalu ditambah 1 (Penomoran)
+            $n = $offset + 1;
             while($siswa = mysqli_fetch_assoc($dataSiswa)) { ?>
             <tr>
                 <td><?= $n ?></td>
-                <td><?= $siswa['nisn'] ?></td>
-                <td><?= $siswa['nama_siswa'] ?></td>
-                <td><?= $siswa['alamat'] ?></td>
-                <td><?= $siswa['tanggal_lahir'] ?></td>
+                <td><?= xssClean($siswa['nisn']) ?></td>
+                <td><?= xssClean($siswa['nama_siswa']) ?></td>
+                <td><?= xssClean($siswa['alamat']) ?></td>
+                <td><?= xssClean($siswa['tanggal_lahir']) ?></td>
                 <td>
                     <a class="btn btn-warning" href="ubah_siswa.php?id=<?= $siswa['id'] ?>">Ubah</a>
                     <button type="button" class="btn btn-danger" onclick="hapusSiswa('<?= $siswa['id'] ?>')">Hapus</button>
@@ -44,7 +71,33 @@ $dataSiswa = mysqli_query($koneksi, "SELECT * FROM table_siswa");
             <?php $n++; } ?>
         </tbody>
     </table>
-    <button type="button" onclick="pindahKeFB()">Pindah ke FB</button>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <!-- jika halaman 1 tombol prev akan didisabled -->
+            <li class="page-item <?php if ($halaman == 1) { echo 'disabled'; } ?>">
+                <a href="?halaman=<?= $previous ?>" class="page-link">
+                    Previous
+                </a>
+            </li>
+
+            <?php for ($i = 1; $i <= $totalHalaman; $i++) { ?>
+
+            <li class="page-item <?php if($halaman == $i) { echo 'active'; } ?>">
+                <a class="page-link" href="?halaman=<?= $i ?>">
+                    <?= $i ?>
+                </a>
+            </li>
+
+            <?php } ?>
+
+            <!-- jika halaman = $totalHalaman tombol prev akan didisabled -->
+            <li class="page-item <?php if ($halaman == $totalHalaman) { echo 'disabled'; } ?>">
+                <a class="page-link" href="?halaman=<?= $next ?>">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
 <script>
     console.log(window);

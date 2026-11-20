@@ -16,6 +16,7 @@ $row = mysqli_fetch_assoc($mataPelajaran);
     <h1>Ubah Mata Pelajaran</h1>
     <br>
     <form action="proses_ubah_mapel.php" method="post">
+        <input type="hidden" name="<?= getCsrfName() ?>" value="<?= getCsrfToken() ?>">
         <input type="hidden" name="id" value="<?= $row['id'] ?>">
             <div class="mb-3">
                 <label for="id_kode_mapel">Kode Mata Pelajaran</label>
